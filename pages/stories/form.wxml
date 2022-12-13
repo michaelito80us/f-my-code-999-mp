@@ -2,11 +2,11 @@
 <view class="container">
   <view class="header">{{addNewStory ? "ADD A NEW" : "EDIT YOUR"}} STORY:</view>
   <form bindsubmit="submitStory">
-    <label for="title">Title:</label>
-    <input class="input" style="margin-bottom: 30rpx;" type="text" id="title" name="title" value="{{formTitle}}"/>
+    <label for="name">Name:</label>
+    <input class="input" style="margin-bottom: 30rpx;" type="text" id="name" name="name" value="{{formName}}"/>
 
-    <label for="content">Content:</label>
-    <textarea name="content" class="input" id="content" value="{{formContent}}" />
+    <label for="text">Text:</label>
+    <textarea name="text" class="input" id="text" value="{{formContent}}" />
 
     <button style="margin: 100rpx 0" type="primary" formType="submit">Submit</button>
   </form>

@@ -7,7 +7,7 @@ Page({
    * Page initial data
    */
   data: {
-    formTitle: "",
+    formName: "",
     formContent: "",
     addNewStory: true
   },
@@ -16,19 +16,20 @@ Page({
     console.log('form submit', e)
     // for a form the target is:  e.detail.value
 
-    const { title, content } = e.detail.value
+    const { name, text } = e.detail.value
     
     // if its editing a story, just modify the story in globalData
     if (this.data.index) {
       const index = this.data.index
       app.globalData.stories[index] = {
-        title: title,
-        content: content
+        name: name,
+        text: text
       }
     } else {
       // if its a new story: adding stories to globalData at index 0
-      app.globalData.stories.splice(0,0,{title, content})
+      app.globalData.stories.splice(0,0,{name, text})
     }
+
 
     // got back to a previous page
     wx.switchTab({
@@ -62,8 +63,8 @@ Page({
       this.setData({
         index: index,
         addNewStory: false,
-        formTitle: story.title,
-        formContent: story.content
+        formName: story.name,
+        formContent: story.text
       })
     }
   },
@@ -72,7 +73,7 @@ Page({
    * Lifecycle function--Called when page hide
    */
   onHide() {
-    this.setData({formTitle: "", formContent: "", addNewStory: true})
+    this.setData({formName: "", formContent: "", addNewStory: true})
     wx.removeStorageSync('index')
   },
 

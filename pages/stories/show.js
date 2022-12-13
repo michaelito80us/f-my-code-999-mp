@@ -23,8 +23,8 @@ Page({
     const index = this.data.story.index
 
     wx.showModal({
-      title: 'Are you sure?',
-      content: 'There is no turning back',
+      name: 'Are you sure?',
+      text: 'There is no turning back',
       confirmText: "YES",
       cancelText: "NO",
       complete: (res) => {
