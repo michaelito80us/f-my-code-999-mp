@@ -1,0 +1,11 @@
+<!--pages/landing/landing.wxml-->
+<view class="banner">
+  <view class="white" >
+    <view style="margin-bottom: 120rpx; font-size: 48rpx; font-weight: bold">
+      Welcome to F MY CODE
+    </view>
+    <view bindtap="goToNextPage" style="width:fit-content; background-color: white; color: #f419d1; padding: 32rpx 64rpx; border-radius: 8rpx; margin: 0 auto;">
+      ENTER
+    </view>
+  </view>
+</view>

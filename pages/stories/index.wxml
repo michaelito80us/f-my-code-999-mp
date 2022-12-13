@@ -1,0 +1,22 @@
+<!-- even items in the class or style can be passed from the JS data object... -->
+<view style="color: {{fontColor}}" class="banner white bold f{{fontSize}}">
+  Follow {{name}}'s coding life 
+</view>
+
+<!-- cards with the stories -->
+
+<view class="container">
+<block wx:if="{{stories}}">
+  <view bindtap="goToStory" data-storyIndex="{{index}}" wx:for="{{stories}}" wx:for-item="story" wx:key="k" class="card-product">
+    <view class="card-product-infos">
+      <view>{{story.title}}</view>
+    </view>
+  </view> 
+</block>
+<block wx:else>
+<view>
+  nothing to see here. come back later...
+</view>
+  
+</block>
+</view>

@@ -1,0 +1,6 @@
+project.private.config.json
+project.config.json
+.DS_Store
+images/.DS_Store
+pages/.DS_Store
+pages/index/.DS_Store

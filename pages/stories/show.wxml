@@ -1,0 +1,18 @@
+<!--pages/stories/show.wxml-->
+<view class="container">
+  <view style="font-size: 48rpx; margin-bottom: 60rpx;">
+  {{story.title}}
+  </view>
+
+  <view style="font-size: 32rpx;">
+    {{story.content}}
+  </view>
+
+  <view class="btns">
+    <button bindtap="editStory" type="primary">Edit</button>
+    <button bindtap="deleteStory" type="warn">Delete</button>
+  </view>
+
+
+
+</view>
