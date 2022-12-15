@@ -11,7 +11,8 @@ App({
     })
   },
   globalData: {
-    
+    host: "http://localhost:3000/api/v1/stories",
+    // host: "this is the real server of you application",
     userInfo: null,
     stories: [
       {

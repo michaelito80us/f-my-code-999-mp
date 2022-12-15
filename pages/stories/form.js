@@ -13,21 +13,42 @@ Page({
   },
 
   submitStory(e){
-    console.log('form submit', e)
+    // console.log('form submit', e)
     // for a form the target is:  e.detail.value
 
     const { name, text } = e.detail.value
+
+    let story = { name , text }
     
     // if its editing a story, just modify the story in globalData
-    if (this.data.index) {
-      const index = this.data.index
-      app.globalData.stories[index] = {
-        name: name,
-        text: text
-      }
+    if (this.data.id) {
+      const id = this.data.id
+      // const index = this.data.index
+      // app.globalData.stories[index] = {
+      //   name: name,
+      //   text: text
+      // }
+
+      wx.request({
+        url: `${app.globalData.host}/${id}`,
+        method: 'PUT',
+        data: { story },
+        success(res) {
+          console.log({res})
+        }
+      })
     } else {
       // if its a new story: adding stories to globalData at index 0
-      app.globalData.stories.splice(0,0,{name, text})
+      // app.globalData.stories.splice(0,0,{name, text})
+      wx.request({
+        url: `${app.globalData.host}`,
+        method: 'POST',
+        data: { story },
+        success(res) {
+          console.log({res})
+        }
+      })
+
     }
 
 
@@ -55,16 +76,30 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow() {
-    if (wx.getStorageSync('index')) {
+    const page = this
+    if (wx.getStorageSync('id')) {
 
-      const index = wx.getStorageSync('index')
-      console.log({index})
-      const story = app.globalData.stories[index]
-      this.setData({
-        index: index,
-        addNewStory: false,
-        formName: story.name,
-        formContent: story.text
+      const id = wx.getStorageSync('id')
+      // console.log({index})
+      // const story = app.globalData.stories[index]
+      // this.setData({
+      //   index: index,
+      //   addNewStory: false,
+      //   formName: story.name,
+      //   formContent: story.text
+      // })
+
+      wx.request({
+        url: `${app.globalData.host}/${id}`,
+        success(res) {
+          // console.log({res})
+          page.setData({
+            id: res.data.story.id,
+            addNewStory: false,
+            formName: res.data.story.name,
+            formContent: res.data.story.text
+          })
+        }
       })
     }
   },
@@ -74,7 +109,7 @@ Page({
    */
   onHide() {
     this.setData({formName: "", formContent: "", addNewStory: true})
-    wx.removeStorageSync('index')
+    wx.removeStorageSync('id')
   },
 
   /**

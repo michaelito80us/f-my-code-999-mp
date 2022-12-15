@@ -19,7 +19,7 @@ Page({
     //  see data-storyIndex="{{index}}" ---> is passed as storyindex
 
     wx.navigateTo({
-      url: `/pages/stories/show?index=${e.currentTarget.dataset.storyindex}`,
+      url: `/pages/stories/show?id=${e.currentTarget.dataset.storyid}`,
     })
   },
 
@@ -34,6 +34,7 @@ Page({
    * Lifecycle function--Called when page is initially rendered
    */
   onReady() {
+    console.log('this should happen on every ready')
 
   },
 
@@ -41,7 +42,17 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow() {
-    this.setData({stories: app.globalData.stories})
+    console.log('this should happen on every show')
+    const page = this
+    // this.setData({stories: app.globalData.stories})
+
+    wx.request({
+      url: `${app.globalData.host}`,
+      success(res) {
+        console.log({res})
+        page.setData({stories: res.data.stories})
+      }
+    })
 
   },
 
